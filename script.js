@@ -41,34 +41,40 @@ Base.Anagram = function() {
 		// Reset the counter each time function called
 		foundWordsCounter = 0;
 		
-
+		// Empty the found words list & reset the counter
+		foundWordsList.empty();
+		$('.found-words').html('(' + foundWordsCounter + ')');
+		
 		// Get the value of the input box
 		yourWord = $('.word').val().toUpperCase();
 
-		// Add the work for UX purposes
-		$('.enteredword').html(yourWord);
-
 		// Sort your word into alphabetical order, removing spaces
-		yourWord = yourWord.split('').sort().join(''); 
-
+		yourWord = yourWord.split(' ').sort().join('');
+		
+		// Add the work for UX purposes
+		$('.enteredword').html(yourWord); 
 
 		for(i=0; i < dictionary.length; i++) {
 
+			// Get the word remove the spaces and sort into alphabetical order
 			var loopWord = dictionary[i];
-			var loopWord = loopWord.split('').sort().join('');
+			var loopWord = loopWord.split(' ').sort().join('');
 
+			// If the word is the same as the input
 		    if (yourWord == loopWord) {
 
+				// Add 1 to the counter and update the HTML
 		    	foundWordsCounter = foundWordsCounter + 1;
-
 		    	$('.found-words').html('(' + foundWordsCounter + ')');
 
-		    	foundWordsList.append('<li>' + dictionary[i] + '</li>');
+				// Update the found words list
+		    	foundWordsList.append('<li>' + loopWord + '</li>');
 
 		    }
 
 		};
 		
+		// Add the amount of words in the dictionary
 		wordsSearched.html('Words searched :' + wordsCounter);
 
 	}
