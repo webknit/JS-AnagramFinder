@@ -43,9 +43,9 @@ Base.Anagram = function()
 
 	function findAnagrams() {
 
-		yourWord = $('.word').val();
+		yourWord = $('.word').val().toLowerCase();
 
-		alert(yourWord);
+		$('.enteredword').html(yourWord);
 
 		console.log(words);
 
