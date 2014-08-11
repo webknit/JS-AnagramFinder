@@ -19,5 +19,7 @@ h1, p {
 }
 
 .row {
+	clear: both;
+	margin-top: 20px;
 	overflow: hidden;
 }
