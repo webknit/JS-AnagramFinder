@@ -10,73 +10,66 @@
 
 var Base = Base || {};
 
-Base.Anagram = function()
-{	
-	var words = ["apers", "refgh", "apres", "asper", "gfhsj", "pares", "sgtay", "parse", "pears", "hsdyc", "prase", "hauis", "rapes", "sgayh", "spear", "qiuys"]; 
+Base.Anagram = function() {
 
-	var yourWord = "spare";
+	// Dummy array I used for testing. Leaving here in case need it in future.
+	// var words = ["apers", "refgh", "apres", "asper", "gfhsj", "pares", "sgtay", "parse", "pears", "hsdyc", "prase", "hauis", "rapes", "sgayh", "spear", "qiuys"]; 
 
+	// Dummy word I used for testing. Leaving this here too.
+	//var yourWord = "spare";
+
+	// Classes
 	var wordsList = $('.words-list');
 	var foundWordsList = $('.found-words-list');
 	var findBtn = $('.find-anagrams');
+	var wordsSearched = $('.words-searched');
 
+	// Count how many words match
+	var foundWordsCounter = 0;
+	var wordsCounter = dictionary.length;
+
+	// Call the functions
 	function init() {
 
-		sortOrder();
 		findBtn.click(findAnagrams);
 
 	}
 
-	function sortOrder() {
-
-		sorteddictionary = [];
-
-		for (var i = 0; i < dictionary.length; i++) {
-
-		    sorteddictionary.push(dictionary[i].toLowerCase());
-
-		}
-
-		sorteddictionary.sort();
-
-	}
-
+	
 	function findAnagrams() {
 
-		yourWord = $('.word').val().toLowerCase();
+		// Reset the counter each time function called
+		foundWordsCounter = 0;
+		
 
+		// Get the value of the input box
+		yourWord = $('.word').val().toUpperCase();
+
+		// Add the work for UX purposes
 		$('.enteredword').html(yourWord);
-
-		console.log(words);
 
 		// Sort your word into alphabetical order, removing spaces
 		yourWord = yourWord.split('').sort().join(''); 
 
-		console.log('your word is ' + yourWord);
 
-		// Sort the array of words into alphabetical order
-		var alphabeticalOrderWords = sorteddictionary.map(function(word){
+		for(i=0; i < dictionary.length; i++) {
 
-			// Sort your word into alphabetical order, removing spaces
-			// Because this is using MAP it adds it to an array
-		  	return word.split('').sort().join('');
-
-		});
-
-		for(i=0; i < alphabeticalOrderWords.length; i++) {
-
-			var loopWord = alphabeticalOrderWords[i];
-
-		    wordsList.append('<li>' + alphabeticalOrderWords[i] + '</li>');
+			var loopWord = dictionary[i];
+			var loopWord = loopWord.split('').sort().join('');
 
 		    if (yourWord == loopWord) {
 
-		    	foundWordsList.append('<li>' + sorteddictionary[i] + '</li>');
+		    	foundWordsCounter = foundWordsCounter + 1;
+
+		    	$('.found-words').html('(' + foundWordsCounter + ')');
+
+		    	foundWordsList.append('<li>' + dictionary[i] + '</li>');
 
 		    }
 
 		};
-
+		
+		wordsSearched.html('Words searched :' + wordsCounter);
 
 	}
 
