@@ -55,8 +55,6 @@ Base.Anagram = function() {
 
 		// Sort your word into alphabetical order, removing spaces
 		var yourWord = yourWord.split('').sort().join('');
-
-		alert(yourWord);
 		
 		// Add the work for UX purposes
 		$('.enteredword').html(yourWord); 
