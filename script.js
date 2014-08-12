@@ -50,14 +50,17 @@ Base.Anagram = function() {
 		// Get the value of the input box
 		var yourWord = $('.word').val().toUpperCase();
 
+		// Add the work for UX purposes
+		$('.enteredword').html(yourWord);
+
+		// Uppercase the word
+		var yourWord = yourWord.toUpperCase();
+
 		// Remove Whitespace
 		var yourWord = yourWord.replace(/\s/g, '');
 
 		// Sort your word into alphabetical order, removing spaces
-		var yourWord = yourWord.split('').sort().join('');
-		
-		// Add the work for UX purposes
-		$('.enteredword').html(yourWord); 
+		var yourWord = yourWord.split('').sort().join(''); 
 
 		for(i=0; i < dictionary.length; i++) {
 
