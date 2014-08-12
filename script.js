@@ -28,6 +28,8 @@ Base.Anagram = function() {
 	var foundWordsCounter = 0;
 	var wordsCounter = dictionary.length;
 
+	var yourWord;
+
 	// Call the functions
 	function init() {
 
@@ -46,10 +48,15 @@ Base.Anagram = function() {
 		$('.found-words').html('(' + foundWordsCounter + ')');
 		
 		// Get the value of the input box
-		yourWord = $('.word').val().toUpperCase();
+		var yourWord = $('.word').val().toUpperCase();
+
+		// Remove Whitespace
+		var yourWord = yourWord.replace(/\s/g, '');
 
 		// Sort your word into alphabetical order, removing spaces
-		yourWord = yourWord.split(' ').sort().join('');
+		var yourWord = yourWord.split('').sort().join('');
+
+		alert(yourWord);
 		
 		// Add the work for UX purposes
 		$('.enteredword').html(yourWord); 
@@ -58,7 +65,7 @@ Base.Anagram = function() {
 
 			// Get the word remove the spaces and sort into alphabetical order
 			var loopWord = dictionary[i];
-			var loopWord = loopWord.split(' ').sort().join('');
+			var loopWord = loopWord.split('').sort().join('');
 
 			// If the word is the same as the input
 		    if (yourWord == loopWord) {
@@ -68,7 +75,7 @@ Base.Anagram = function() {
 		    	$('.found-words').html('(' + foundWordsCounter + ')');
 
 				// Update the found words list
-		    	foundWordsList.append('<li>' + loopWord + '</li>');
+		    	foundWordsList.append('<li>' + dictionary[i] + '</li>');
 
 		    }
 
